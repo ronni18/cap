@@ -56,6 +56,19 @@ export class AuthService {
     }
 
   }
+  async alert(message:string){
+    const alert = await this.alertCtrl.create({
+      header: 'Error',
+      message: message,
+      buttons: ['ok']
+    })
+
+    await alert.present();
+  }
+
+  resetPassword(){
+    
+  }
 
   async alert(message:string){
     const alert = await this.alertctrl.create({
