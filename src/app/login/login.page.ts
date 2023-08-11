@@ -45,4 +45,8 @@ export class LoginPage implements OnInit {
 
   }
 
+  resetPassword(){
+    this.authService.resetPassword()
+  }
+
 }
