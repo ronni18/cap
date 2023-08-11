@@ -1,0 +1,18 @@
+<ion-content class="ion-padding">
+  <div class="content-container">
+    <ion-item>
+      <ion-icon style="zoom:6.0; margin: 0 auto; margin-top: 5px; margin-bottom: 5px;" name="person-circle-outline"></ion-icon>
+    </ion-item>
+    <ion-item>
+      <ion-icon slot="start" name="mail-outline"></ion-icon>
+      <ion-input placeholder="Correo Electrónico" type="email" [(ngModel)]="email"></ion-input>
+    </ion-item>
+
+    <ion-item >
+      <ion-icon slot="start"  name="key-outline"></ion-icon>
+      <ion-input placeholder="Contraseña" type="password" [(ngModel)]="password"></ion-input>
+    </ion-item>
+
+    <ion-button expand="full" (click)="register()">Registrarse</ion-button>
+  </div>
+</ion-content>
