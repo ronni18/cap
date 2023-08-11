@@ -57,7 +57,7 @@ export class AuthService {
 
   }
   async alert(message:string){
-    const alert = await this.alertCtrl.create({
+    const alert = await this.alertctrl.create({
       header: 'Error',
       message: message,
       buttons: ['ok']
@@ -70,15 +70,6 @@ export class AuthService {
     
   }
 
-  async alert(message:string){
-    const alert = await this.alertctrl.create({
-      header: 'Error',
-      message: message,
-      buttons: ['ok']
-    })
-
-    await alert.present();
-  }
 
   
 }
