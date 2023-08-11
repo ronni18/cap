@@ -12,7 +12,7 @@ export class AuthService {
   constructor(
     private router:Router,
     private auth: AngularFireAuth,
-    private alert: AlertController,
+    private alertctrl: AlertController,
 
     ) { }
 
@@ -24,7 +24,7 @@ export class AuthService {
       user?.sendEmailVerification();
     } catch (error) {
       const message = JSON.parse(JSON.stringify(error)).customData?._tokenResponse?.error?.message;
-      this.alertE(message)
+      this.alert(message)
       
     }
 
@@ -32,6 +32,13 @@ export class AuthService {
   }
 
   login = (email:string, password: string) => {
+
+    this.auth.signInWithEmailAndPassword(email,password).then(resp => {
+      this.router.navigate(['/home']);
+    }).catch(error => {
+      this.alert('Verificar las credenciales')
+      
+    })
 
 
   }
@@ -41,11 +48,17 @@ export class AuthService {
   }
 
   async logout() {
+    try {
+      this.auth.signOut();
+      
+    } catch (error) {
+      this.alert('No se pudo cerrar la session');
+    }
 
   }
 
-  async alertE(message:string){
-    const alert = await this.alert.create({
+  async alert(message:string){
+    const alert = await this.alertctrl.create({
       header: 'Error',
       message: message,
       buttons: ['ok']

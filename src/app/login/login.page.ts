@@ -24,7 +24,7 @@ export class LoginPage implements OnInit {
   async login(){
     const loading = await this.loadingCtrl.create({
       message: 'Cargando...', // Mensaje a mostrar
-      duration: 1000 // Duración en milisegundos (opcional)
+      duration: 500 // Duración en milisegundos (opcional)
     });
 
     await loading.present();
