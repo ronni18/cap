@@ -66,7 +66,7 @@ export class AuthService {
     await alert.present();
   }
 
-  resetPassword(){
+  resetPassword(email:string){
     
   }
 
