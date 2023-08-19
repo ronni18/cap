@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "capacitacion-87a9b": {
+      "hosting": {
+        "app": [
+          "capacitacion-87a9b"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "capacitacion-87a9b"
+  }
+}

@@ -1,12 +1,16 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { Auth, GoogleAuthProvider } from '@angular/fire/auth';
+import { signInWithRedirect } from 'firebase/auth';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private readonly auth = inject(Auth);
+  private readonly googleProvider = new GoogleAuthProvider;
 
   constructor(
     private router:Router,
@@ -22,7 +26,14 @@ export class AuthService {
 
   }
   
-  async loginG() {
+  async loginG():Promise<void> {
+    try {
+      
+      await signInWithRedirect( this.auth, this.googleProvider)
+    } catch (error) {
+      console.log(error);
+      
+    }
    
   }
 

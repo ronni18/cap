@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { LoadingController } from '@ionic/angular';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -10,6 +11,8 @@ import { LoadingController } from '@ionic/angular';
 export class LoginPage implements OnInit {
   email: string = '';
   password: string = '';
+  user$!: Observable<any>;
+  private readonly authSvc = inject(AuthService);
 
   constructor(
     private authService : AuthService,
@@ -18,6 +21,7 @@ export class LoginPage implements OnInit {
     ) { }
 
   ngOnInit() {
+    // this.user$ = this.authSvc
     
   }
 
