@@ -21,7 +21,7 @@ export class LoginPage implements OnInit {
     ) { }
 
   ngOnInit() {
-    // this.user$ = this.authSvc
+    this.user$ = this.authSvc.userState$
     
   }
 
@@ -45,6 +45,8 @@ export class LoginPage implements OnInit {
 
     await loading.present();
     this.authService.loginG();
+    //console.log(this.user$);
+    
     
 
   }

@@ -1,8 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { Auth, GoogleAuthProvider } from '@angular/fire/auth';
-import { signInWithRedirect } from 'firebase/auth';
+import { Auth, GoogleAuthProvider, authState, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { createUserWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail, signInWithRedirect } from 'firebase/auth';
 
 
 @Injectable({
@@ -15,14 +15,29 @@ export class AuthService {
   constructor(
     private router:Router,
     private alertCtrl: AlertController,
-    ) { }
+  ) { }
+
+  get userState$() {
+    return authState(this.auth)
+  }
+   
 
   async register(email:string, password: string): Promise<void>{
-
+    const {user} = await createUserWithEmailAndPassword(this.auth,email, password)
+    await this.sendEmailVerification(user)
   }
 
-  login = (email:string, password: string) => {
+  async sendEmailVerification(userCredential:any):Promise<void>{
+    try {
+      
+      await sendEmailVerification(userCredential)
+    } catch (error) {
+      
+    }
+  }
 
+  login = async (email:string, password: string) => {
+    await signInWithEmailAndPassword(this.auth, email, password)
 
   }
   
@@ -38,8 +53,10 @@ export class AuthService {
   }
 
   async logout() {
+    this.auth.signOut();
 
   }
+
   async alert(message:string){
     const alert = await this.alertCtrl.create({
       header: 'Error',
@@ -50,7 +67,8 @@ export class AuthService {
     await alert.present();
   }
 
-  resetPassword(email:string){
+  async resetPassword(email:string){
+    await sendPasswordResetEmail(this.auth, email)
     
   }
 
