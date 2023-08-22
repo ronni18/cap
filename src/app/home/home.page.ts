@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import {Firestore, addDoc, collection} from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-home',
@@ -10,6 +11,7 @@ export class HomePage implements OnInit {
 
   constructor(
     private authService : AuthService,
+    private firestore : Firestore
   ) { }
 
   ngOnInit() {
@@ -17,6 +19,11 @@ export class HomePage implements OnInit {
 
   logout(){
     this.authService.logout();
+  }
+
+  saveTask(task:any){
+    const tasks = collection(this.firestore, 'tasks')
+    return addDoc(tasks, task)
   }
 
 }
