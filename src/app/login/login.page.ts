@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, ModalController } from '@ionic/angular';
+import { ModalResetPassComponent } from '../modal-reset-pass/modal-reset-pass.component';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,7 @@ export class LoginPage implements OnInit {
 
   constructor(
     private authService : AuthService,
+    private modalCtrl : ModalController,
     private loadingCtrl: LoadingController,
 
     ) { }
@@ -45,8 +47,12 @@ export class LoginPage implements OnInit {
 
   }
 
-  resetPassword(){
-    this.authService.resetPassword(this.email);
+  async resetPassword(){
+    const modal = await this.modalCtrl.create({
+      component : ModalResetPassComponent,
+    })
+    modal.present();
+    //this.authService.resetPassword(this.email);
   }
 
 }
