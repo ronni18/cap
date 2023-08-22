@@ -6,6 +6,8 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ModalResetPassComponent } from './modal-reset-pass/modal-reset-pass.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireModule } from '@angular/fire/compat';
@@ -17,6 +19,8 @@ import { environment } from 'src/environments/environment';
     BrowserModule, 
     IonicModule.forRoot(), 
     AppRoutingModule, 
+    FormsModule, 
+    ReactiveFormsModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase),
   ],
