@@ -21,6 +21,7 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     this.tasks.push({title:'prueba', task: 'task de prueba para todo el dia'})
+    this.tasksService.tasks$.subscribe(tasks => this.tasks = tasks)
   }
 
   logout(){
