@@ -21,13 +21,11 @@ export class AppComponent {
     }
     
     async userState(){
-      console.log(this.auth);
-      return this.authSvc.userState$
-        .pipe(
-          take(1),
-          tap((isLogetIn) =>{
-            isLogetIn ? this.router.navigate(['/home']) : true
-          })
-        )
+      this.authSvc.userState$.subscribe(r=>{
+        if (r) {
+          this.router.navigate(['/home'])
+        }
+      });
+     
     }
 }

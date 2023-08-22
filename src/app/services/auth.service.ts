@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { Auth, GoogleAuthProvider, authState, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { Auth, GoogleAuthProvider, authState, getAuth, signInWithEmailAndPassword } from '@angular/fire/auth';
 import { createUserWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail, signInWithRedirect } from 'firebase/auth';
 
 
@@ -37,23 +37,30 @@ export class AuthService {
   }
 
   login = async (email:string, password: string) => {
-    await signInWithEmailAndPassword(this.auth, email, password)
+    await signInWithEmailAndPassword(this.auth, email, password).then(resp =>{
+      console.log(resp);
+      
+      this.router.navigate(['/home'])
+    })
 
   }
   
   async loginG():Promise<void> {
-    try {
+
       
-      await signInWithRedirect( this.auth, this.googleProvider)
-    } catch (error) {
-      console.log(error);
-      
-    }
+      await signInWithRedirect( getAuth(), new GoogleAuthProvider).then(resp =>{
+        console.log(resp);
+        
+        this.router.navigate(['/home'])
+      })
+   
    
   }
 
   async logout() {
-    this.auth.signOut();
+    this.auth.signOut().then(resp =>{
+      this.router.navigate(['/login'])
+    });
 
   }
 
