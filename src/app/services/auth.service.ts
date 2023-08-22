@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import  {GoogleAuthProvider, getAuth, sendPasswordResetEmail, signInWithPopup, signInWithRedirect} from '@angular/fire/auth';
 
 
 @Injectable({
@@ -44,12 +45,12 @@ export class AuthService {
   }
   
   async loginG() {
-   
+   return signInWithRedirect(getAuth(), new GoogleAuthProvider())
   }
 
   async logout() {
     try {
-      this.auth.signOut();
+      return this.auth.signOut();
       
     } catch (error) {
       this.alert('No se pudo cerrar la session');
@@ -67,7 +68,7 @@ export class AuthService {
   }
 
   resetPassword(email:string){
-    
+    return sendPasswordResetEmail(getAuth(),email)
   }
 
 
