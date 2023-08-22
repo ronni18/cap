@@ -11,11 +11,20 @@ import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideMessaging,getMessaging } from '@angular/fire/messaging';
+import { ModalCrearTaskComponent } from './modal-crear-task/modal-crear-task.component';
+import { ModalResetPassComponent } from './modal-reset-pass/modal-reset-pass.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    ModalCrearTaskComponent,
+    ModalResetPassComponent
+  ],
   imports: [
     BrowserModule, 
+    FormsModule, 
+    ReactiveFormsModule,
     IonicModule.forRoot(), 
     AppRoutingModule, 
     provideFirebaseApp(() => initializeApp(environment.firebase)), 

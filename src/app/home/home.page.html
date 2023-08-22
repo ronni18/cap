@@ -1,16 +1,30 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>home</ion-title>
+    <ion-button slot="end" (click)="createTask()"  fill="clear" shape="round">
+      <ion-icon  name="add"></ion-icon>
+    </ion-button> 
     <ion-button slot="end" (click)="logout()"  fill="clear" shape="round">
       Cerrar session
     </ion-button>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">home</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-list style="width: 100%" *ngIf="tasks.length > 0">
+    <ion-item style="width: 90% ;margin: 0 auto;" *ngFor="let task of tasks">
+      <ion-card  style="width: 90% ; margin: 0 auto;">
+        <ion-card-header>
+          <ion-card-title>{{task.title}}</ion-card-title>
+        </ion-card-header>
+      
+        <ion-card-content>
+         <p>{{task.task}}</p>
+        </ion-card-content>
+        <ion-button color="danger" (click)="deleteTask(task)" expand="block"  shape="round">
+          Eliminar
+        </ion-button>
+      </ion-card>
+    </ion-item>
+  </ion-list>
 </ion-content>
