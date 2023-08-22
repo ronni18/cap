@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Firestore, collectionData, collection, addDoc } from '@angular/fire/firestore';
+import { Firestore, collectionData, collection, addDoc, doc, deleteDoc } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +22,8 @@ export class TasksService {
 
   }
   deleteTask(task:any){
-
+    const taskR = doc(this.firestore, 'tasks/'+task.id)
+    return deleteDoc(taskR);
   }
  //
   
