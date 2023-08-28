@@ -12,8 +12,8 @@
 
 <ion-content>
   <ion-list style="width: 100%" *ngIf="tasks.length > 0">
-    <ion-item style="width: 90% ;margin: 0 auto;" *ngFor="let task of tasks">
-      <ion-card  style="width: 90% ; margin: 0 auto;">
+    <ion-item style="width: 90% ;margin: 0 auto; margin-bottom: 20px;" *ngFor="let task of tasks">
+      <ion-card color="medium"  style="width: 90% ; margin: 0 auto;">
         <ion-card-header>
           <ion-card-title>{{task.title}}</ion-card-title>
         </ion-card-header>

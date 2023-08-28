@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TasksService } from '../services/tasks.service';
 import { ModalController } from '@ionic/angular';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-modal-crear-task',
@@ -11,6 +12,7 @@ import { ModalController } from '@ionic/angular';
 export class ModalCrearTaskComponent  implements OnInit {
   title: string = '';
   task : string = '';
+  user : any;
   saveTaskForm = new FormGroup({
     title : new FormControl('',Validators.required),
     task : new FormControl('',Validators.required)
@@ -18,11 +20,20 @@ export class ModalCrearTaskComponent  implements OnInit {
   constructor(
     private tasksService: TasksService,
     private modalCtrl : ModalController,
+    private authService : AuthService
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.authService.userState$.subscribe(r=>{
+      if (r) {
+        this.user = r;
+      }
+    });
+  }
 
   saveTasks(){
+    let task:any = this.saveTaskForm.value
+    task.creador = this.user.uid
     this.tasksService.saveTasks(this.saveTaskForm.value)
   }
   

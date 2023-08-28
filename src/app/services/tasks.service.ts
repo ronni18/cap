@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Firestore, collectionData, collection, addDoc, doc, deleteDoc } from '@angular/fire/firestore';
+import { Firestore, collectionData, collection, addDoc, doc, deleteDoc} from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +10,11 @@ export class TasksService {
   firestore: Firestore = inject(Firestore);
 
   constructor(
-  //  private firestore : Firestore,
   ) {
-    const tasks = collection(this.firestore, 'tasks')
-    this.tasks$ = collectionData(tasks, {idField: 'id'}) as Observable<any[]>;
+   
+        const tasks = collection(this.firestore, 'tasks');
+        this.tasks$ = collectionData(tasks,{idField: 'id'});
+   
    }
 
   saveTasks(task:any){

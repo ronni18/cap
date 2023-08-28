@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { TasksService } from '../services/tasks.service';
 import { ModalController } from '@ionic/angular';
 import { ModalCrearTaskComponent } from '../modal-crear-task/modal-crear-task.component';
@@ -14,14 +13,20 @@ export class HomePage implements OnInit {
  tasks:any = new Array();
   constructor(
     private authService : AuthService,
-    private fb :FormBuilder,
     private tasksService: TasksService,
     private modalCtrl : ModalController,
   ) { }
 
   ngOnInit() {
     this.tasks.push({title:'prueba', task: 'task de prueba para todo el dia'})
-    this.tasksService.tasks$.subscribe(tasks => this.tasks = tasks)
+    this.tasksService.tasks$.subscribe(tasks => {
+      this.authService.userState$.subscribe(r=>{
+        if (r?.uid) {
+          this.tasks = tasks.filter(task => task.creador === r.uid)
+        }
+      })
+      
+    })
   }
 
   logout(){

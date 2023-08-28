@@ -1,8 +1,9 @@
 import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { Auth, GoogleAuthProvider, authState, getAuth, signInWithEmailAndPassword } from '@angular/fire/auth';
-import { createUserWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail, signInWithRedirect } from 'firebase/auth';
+import { authState, Auth} from '@angular/fire/auth';
+import { GoogleAuthProvider, getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, 
+  sendEmailVerification, sendPasswordResetEmail, signInWithRedirect } from 'firebase/auth';
 
 
 @Injectable({
