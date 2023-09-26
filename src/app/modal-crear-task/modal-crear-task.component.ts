@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TasksService } from '../services/tasks.service';
-import { ModalController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -20,6 +20,7 @@ export class ModalCrearTaskComponent  implements OnInit {
   constructor(
     private tasksService: TasksService,
     private modalCtrl : ModalController,
+    private alertCtrl: AlertController,
     private authService : AuthService
   ) { }
 
@@ -34,10 +35,27 @@ export class ModalCrearTaskComponent  implements OnInit {
   saveTasks(){
     let task:any = this.saveTaskForm.value
     task.creador = this.user.uid
-    this.tasksService.saveTasks(this.saveTaskForm.value)
+    this.tasksService.saveTasks(this.saveTaskForm.value).then(resp => {
+
+      this.modalCtrl.dismiss()
+    }).catch(error =>{
+      this.modalCtrl.dismiss()
+      this.alert('Error al crear la tarea !!')
+
+    })
   }
   
   cerrar(){
     this.modalCtrl.dismiss()
+  }
+
+  async alert(message:string){
+    const alert = await this.alertCtrl.create({
+      header: 'Error',
+      message: message,
+      buttons: ['ok']
+    })
+
+    await alert.present();
   }
 }

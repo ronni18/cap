@@ -1,14 +1,14 @@
 {
   "targets": {
-    "capacitacion-87a9b": {
+    "vero-139ce": {
       "hosting": {
         "app": [
-          "capacitacion-87a9b"
+          "vero-139ce"
         ]
       }
     }
   },
   "projects": {
-    "default": "capacitacion-87a9b"
+    "default": "vero-139ce"
   }
 }

@@ -1,12 +1,12 @@
 export const environment = {
   firebase: {
-    projectId: 'capacitacion-87a9b',
-    appId: '1:1048236738976:web:15618f04403de312af7cc5',
-    storageBucket: 'capacitacion-87a9b.appspot.com',
-    apiKey: 'AIzaSyCcYVPDtazvaCHS6Wyt9pon30ow-hovY2c',
-    authDomain: 'capacitacion-87a9b.firebaseapp.com',
-    messagingSenderId: '1048236738976',
-    measurementId: 'G-FPPW9JTFGS',
+    apiKey: "AIzaSyBwmchRuv3EEuwpByj4UigbDHawylvUY-Q",
+    authDomain: "vero-139ce.firebaseapp.com",
+    projectId: "vero-139ce",
+    storageBucket: "vero-139ce.appspot.com",
+    messagingSenderId: "1022534217458",
+    appId: "1:1022534217458:web:c62f0c4f5e1d6c81476a6b",
+    measurementId: "G-DQ3WMFH0CZ"
   },
   production: true
 };
