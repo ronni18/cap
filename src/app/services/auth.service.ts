@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { authState, Auth} from '@angular/fire/auth';
+import { authState, Auth, signInWithPopup} from '@angular/fire/auth';
 import { GoogleAuthProvider, getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, 
   sendEmailVerification, sendPasswordResetEmail, signInWithRedirect } from 'firebase/auth';
 
@@ -49,7 +49,7 @@ export class AuthService {
   async loginG():Promise<void> {
 
       
-      await signInWithRedirect( getAuth(), new GoogleAuthProvider).then(resp =>{
+      await signInWithPopup( getAuth(), new GoogleAuthProvider).then(resp =>{
         console.log(resp);
         
         this.router.navigate(['/home'])
